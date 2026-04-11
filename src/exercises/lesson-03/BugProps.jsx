@@ -12,11 +12,13 @@
   Use the commented "Explanation" section at the bottom of this lesson's components.
 */
 
+import { useState } from 'react';
+
 export default function BugProps({ name = 'friend' }) {
-  let message = 'Hello, ' + name;
+  const [message, setMessage] = useState('Hello, ' + name);
 
   function handleChange() {
-    message = 'Hi, ' + name + '!';
+    setMessage('Hello, ' + name + '!');
   }
 
   return (
@@ -28,4 +30,9 @@ export default function BugProps({ name = 'friend' }) {
 }
 
 // Explanation:
-// (Write your explanation here)
+// In the original code, there is no way for React
+// to track the rendering of the variable 'message'
+// because it is just a normal variable. Using
+// useState() allows us to both update it, and
+// allows React to use the setMessage helper
+// function to update it and re-render what we see.

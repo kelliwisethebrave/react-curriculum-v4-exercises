@@ -15,10 +15,17 @@ export default function BugEffectLoop() {
 
   useEffect(() => {
     setCount(count + 1);
-  });
+  }, []);
 
   return <p>Bug 1 Count: {count}</p>;
 }
 
 // Explanation:
-// (Write your explanation here)
+// Without an array added (dependency array),
+// the effect will continue to run with every
+// render, so it will continue to run without
+// stopping, because there is nothing to stop it,
+// which creates an infinite loop.
+// With the dependency array (second argument) added,
+// this time as an empty array, the effect runs
+// once, and then stops.
