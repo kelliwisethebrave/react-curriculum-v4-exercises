@@ -13,8 +13,7 @@ export default function BugMutatedState() {
   let [count, setCount] = useState(0);
 
   function handleAdd() {
-    count++;
-    setCount(count);
+    setCount(count + 1);
   }
 
   return (
@@ -26,4 +25,9 @@ export default function BugMutatedState() {
 }
 
 // Explanation:
-// (Write your explanation here)
+// Using count++ modifies the variable directly.
+// In React, we want to avoid modifying variables
+// directly. We also want to include the method we
+// use to calculate our new value
+// in the same step as using setCount, which will
+// update state and trigger a re-render.
