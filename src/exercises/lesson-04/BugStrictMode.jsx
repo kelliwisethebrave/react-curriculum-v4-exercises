@@ -7,9 +7,11 @@ export default function BugStrictMode() {
   const [count, setCount] = useState(0);
 
   useEffect(() => {
-    setInterval(() => {
+    const id = setInterval(() => {
       setCount((c) => c + 1);
     }, 1000);
+
+    return () => clearInterval(id);
   }, []);
 
   return (
@@ -21,3 +23,8 @@ export default function BugStrictMode() {
 }
 
 // Write your explanation of how StrictMode helps us catch this bug
+// StrictMode helps us catch this bug because it mounts, creates an interval
+// timer that isn't stopped, unmounts, and then mounts again, creating
+// another interval timer. Thus we the count we see increases by 2 instead
+// of by 1 each time. This tells us that a helper/cleanup function is
+// needed (clearInterval()).
