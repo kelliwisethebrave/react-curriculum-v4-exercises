@@ -108,12 +108,19 @@ export function surveyReducer(state, action) {
 
     case 'DELETE_QUESTION':
       // TODO: Implement this action
-      console.log('TODO: Implement DELETE_QUESTION action');
+      //console.log('TODO: Implement DELETE_QUESTION action');
       return {
         ...state,
         questions: state.questions.filter(
           (q) => q.id !== action.payload.questionId
         ), // needs !== for deleting
+        ui: {
+          ...state.ui,
+          editingQuestionId:
+            action.payload.questionId === state.ui.editingQuestionId
+              ? null
+              : state.ui.editingQuestionId,
+        },
       };
     case 'ADD_OPTION_TO_QUESTION':
       return {
